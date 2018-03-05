@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable name="user" type="com.rent.componentssimple.databinding.UserEntity" />
+        <variable name="clickListener" type="android.view.View.OnClickListener" />
+        <variable name="clickEvent" type="com.rent.componentssimple.databinding.DataBindingBasicActivity.ClickEvent" />
+        <import type="android.view.View" />
+        <import type="java.util.Arrays" />
+    </data>
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:onClick="@{(v) -> clickListener.onClick(v)}"
+            android:text="@{user.name}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:visibility="@{user.age > 0 ? View.VISIBLE : View.GONE}"
+            android:text="@{String.valueOf(user.age)}"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:text='@{user.married ? "已婚" : "未婚"}'/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:onClick="@{() -> clickEvent.onHobbyClicked(user.hobby)}"
+            android:text="@{Arrays.toString(user.hobby)}"/>
+    </LinearLayout>
+</layout>
